@@ -21,8 +21,9 @@ class Uygulama5State extends State<Uygulama5> {
       var text = controller.text; //Metni al
       var parcalar = text.split("-"); //tireye göre böl
       var yeniBegeni = Begeni(parcalar[0], parcalar[1]);
-      liste.add(yeniBegeni); //listeye ekle
+      BegeniListesi.begeniListesi.add(yeniBegeni); //listeye ekle
       controller.text = "";
+      liste = BegeniListesi.begeniListesi;
     });
   }
 
@@ -41,6 +42,19 @@ class Uygulama5State extends State<Uygulama5> {
         }
         liste = yeniListe;
       }
+    });
+  }
+
+  void sil() {
+    setState(() {
+      var silinecek = controller.text;
+      for (int i = 0; i < liste.length; i++) {
+        if (liste[i].adSoyad == silinecek) {
+          liste.removeAt(i--);
+          controller.text = "";
+        }
+      }
+      liste = BegeniListesi.begeniListesi;
     });
   }
 
@@ -66,6 +80,7 @@ class Uygulama5State extends State<Uygulama5> {
             Tuslar(
               ekleme: ekle,
               arama: ara,
+              silme: sil,
             ),
             Expanded(
               child: Liste(liste, elemanSec),

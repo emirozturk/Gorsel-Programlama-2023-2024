@@ -17,7 +17,10 @@ class Liste extends StatelessWidget {
         return ListTile(
           title: Text(liste[index].adSoyad),
           subtitle: Text(liste[index].parca),
+          leading: Image.asset("assets/images/profilephoto.webp"),
           onTap: () => secimFonksiyonu(index),
+          trailing: TextButton(
+              child: Icon(Icons.remove_circle_outline), onPressed: () {}),
         );
       },
     );
