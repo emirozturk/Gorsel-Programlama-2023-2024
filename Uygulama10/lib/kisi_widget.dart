@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sqilte/kisi.dart';
+import 'package:sqilte/Models/kisi.dart';
 
 class KisiWidget extends StatefulWidget {
   KisiWidget(
@@ -67,7 +67,7 @@ class _KisiWidgetState extends State<KisiWidget> {
             child: ListView.builder(
           itemBuilder: (context, index) => ListTile(
             tileColor: index == secilenIndex ? Colors.redAccent : null,
-            title: Text(widget.kisiListesi[index].adSoyad),
+            title: Text(widget.kisiListesi[index].adsoyad),
             subtitle: Text(widget.kisiListesi[index].id.toString()),
             onTap: () {
               setState(() {

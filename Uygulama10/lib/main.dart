@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+import 'package:sqilte/Models/kisi.dart';
+import 'package:sqilte/db.dart';
 import 'package:sqilte/kisi_widget.dart';
 import 'package:sqilte/soz_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  sqfliteFfiInit();
+  databaseFactory = databaseFactoryFfi;
   runApp(const MyApp());
 }
 
@@ -35,13 +40,25 @@ class _MyHomePageState extends State<MyHomePage> {
   var first = true;
   List<Kisi> kisiListesi = [];
 
-  void kisiEkle(adSoyad, sifre) {}
+  void kisiEkle(adSoyad, sifre) {
+    Db.kisiEkle(Kisi(adsoyad: adSoyad, sifre: sifre));
+    listele();
+  }
 
-  void kisiSil(int index) {}
+  void kisiSil(int index) {
+    Db.kisiSil(index);
+    listele();
+  }
 
   void sozEkle() {}
   void sozSil() {}
-  void listele() {}
+  void listele() {
+    Db.kisiListele().then((liste) {
+      setState(() {
+        kisiListesi = liste;        
+      });
+    });
+  }
 
   List<Widget> widgetListesiFunc() => [
         KisiWidget(

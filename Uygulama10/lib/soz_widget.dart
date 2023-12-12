@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sqilte/kisi.dart';
+import 'package:sqilte/Models/kisi.dart';
 
 class SozWidget extends StatefulWidget {
   SozWidget(
@@ -28,7 +28,7 @@ class _SozWidgetState extends State<SozWidget> {
               value: seciliKisi,
               items: widget.kisiListesi
                   .map(
-                      (e) => DropdownMenuItem(value: e, child: Text(e.adSoyad)))
+                      (e) => DropdownMenuItem(value: e, child: Text(e.adsoyad)))
                   .toList(),
               onChanged: (value) => setState(() {
                 seciliKisi = value;
@@ -66,7 +66,7 @@ class _SozWidgetState extends State<SozWidget> {
         Expanded(
             child: ListView.builder(
           itemBuilder: (context, index) => ListTile(
-            title: Text(widget.kisiListesi[index].adSoyad),
+            title: Text(widget.kisiListesi[index].adsoyad),
             onTap: () => secilenIndex = index,
           ),
           itemCount: widget.kisiListesi.length,
